@@ -13,8 +13,6 @@ const getLibraryCreate = function () {
     .then((data) => {
       console.log("DATA", data);
       const cardContainer = document.getElementById("card-container");
-      const row = document.createElement("div");
-      row.className = "row";
 
       data.forEach((book) => {
         const card = document.createElement("div");
@@ -45,7 +43,6 @@ const getLibraryCreate = function () {
         cardBody.appendChild(cardButton);
         card.appendChild(bookImg);
         card.appendChild(cardBody);
-        row.appendChild(card);
 
         cardContainer.appendChild(card);
         console.log("Book data: ", book);
