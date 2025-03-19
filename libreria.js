@@ -14,41 +14,22 @@ const getLibraryCreate = function () {
       console.log("DATA", data);
       const cardContainer = document.getElementById("card-container");
 
+      // Costruisci il contenuto HTML come stringa
       data.forEach((book) => {
-        const card = document.createElement("div");
-        card.className = "card col-lg-4";
-        card.style.width = "18rem";
-
-        const bookImg = document.createElement("img");
-        bookImg.src = book.img;
-        bookImg.className = "card-img-top";
-        bookImg.alt = book.title;
-        bookImg.style.height = "300px";
-        const cardBody = document.createElement("div");
-        cardBody.className = "card-body";
-        cardBody.style.display = "flex"; // Usa Flexbox
-        cardBody.style.flexDirection = "column"; // Disposizione verticale
-        cardBody.style.justifyContent = "space-between";
-
-        const cardTitle = document.createElement("h3");
-        cardTitle.innerText = book.title;
-
-        const priceBook = document.createElement("h5");
-        priceBook.innerText = `€${book.price}`;
-        priceBook.style.flexGrow = "1";
-        const cardButton = document.createElement("a");
-        cardButton.className = "btn btn-primary";
-        cardButton.href = "#";
-        cardButton.innerText = "AGGIUNGI AL CARRELLO LESTO";
-
-        cardBody.appendChild(cardTitle);
-        cardBody.appendChild(priceBook);
-        cardBody.appendChild(cardButton);
-        card.appendChild(bookImg);
-        card.appendChild(cardBody);
-
-        cardContainer.appendChild(card);
-        console.log("Book data: ", book);
+        cardContainer.innerHTML += `
+            <div class="card col-lg-4" style="width: 18rem; margin: 1rem;">
+              <img src="${book.img}" class="card-img-top" alt="${book.title}" style="height: 300px;">
+              <div class="card-body d-flex flex-column justify-content-between">
+                <h3>${book.title}</h3>
+                <div style="margin-top: auto;">
+                  <h5 style="margin-bottom: 0.5rem;">€${book.price}</h5>
+                  <div class="d-flex justify-content-between text-center" style="gap: 0.5rem;">
+                    <a href="#" class="btn btn-primary">AGGIUNGI AL CARRELLO</a>
+                    <a href="#" class="btn btn-danger ">RIMUOVI</a>
+                  </div>
+                </div>
+              </div>
+            </div>`;
       });
     })
     .catch((err) => {
